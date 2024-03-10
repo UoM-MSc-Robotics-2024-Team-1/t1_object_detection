@@ -13,12 +13,12 @@ This project enhances the Leo Rover's environmental interaction by using the lig
 Clone the repository to get started with enhancing your Leo Rover:
 
 ```bash
-git clone https://github.com/yourusername/leo-rover-yolov5n-detection.git
+git clone https://github.com/UoM-MSc-Robotics-2024-Team-1/t1_object_detection.git
 ```
 
 ### Prerequisites
 
-Ensure you have Python 3.6+ installed on your system:
+Ensure you have Python 3.8+ installed on your system:
 
 ```bash
 python --version
