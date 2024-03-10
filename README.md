@@ -12,7 +12,7 @@ To get started with this project, follow the steps below:
 Clone the repository:
 bash
 Copy code
-git clone https://github.com/your-repository/leo-rover-yolov5n.git
+git clone https://github.com/UoM-MSc-Robotics-2024-Team-1/t1_object_detection.git
 Install dependencies:
 bash
 Copy code
