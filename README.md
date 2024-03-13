@@ -59,11 +59,11 @@ python detect.py --source yourimage.jpg --weights path/to/your/model_weights.pt
 
 ```python
 python detect.py --source yourimage.jpg
-```python
+```
 `--data`: Specify the dataset configuration file path (dataset.yaml). The default path is set; update it according to your dataset or configuration file's location.
 
 ```python
 python detect.py --source yourimage.jpg --data path/to/your/dataset.yaml
-```python
+```
 Ensure to modify these arguments according to your setup and the requirements of your detection task.
 
