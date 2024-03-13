@@ -364,7 +364,7 @@ def run(
                     color_name = get_color_name(dominant_color,color_dict)
 
                     # 打印坐标和颜色
-                    print(f"Bounding box: {xyxy_int},Class: {model.names[int(cls)]}, Dominant color: {dominant_color},Color name:{color_name}")
+                    print(f"Bounding box: {xyxy_int},Class: {model.names[int(cls)]}, Dominant color: {dominant_color}")
             
 
                     if save_csv:
