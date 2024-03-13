@@ -42,21 +42,21 @@ python detect.py
 ```
 The script supports several optional arguments:
 
-`--weights`: Set the model path or triton URL. Default is pre-configured to a specific path. Change this to where your model's weights are stored.
+`--weights`: Set the model path or triton URL. Default is pre-configured to a specific path. Change this to where your model's weights are stored：
 
 ```python
 python detect.py --weights path/to/your/model_weights.pt
 ```
 
 
-`--source`: Define the source of the input. It can be a file path, directory, URL, glob pattern, or a camera ID ('0' for webcam). The default is 6, adjust as needed.
+`--source`: Define the source of the input. It can be a file path, directory, URL, glob pattern, or a camera ID ('0' for webcam). The default is 6, adjust as needed：
 
 ```python
 python detect.py --source yourimage.jpg
 ```
 
 
-`--data`: Specify the dataset configuration file path (dataset.yaml). The default path is set; update it according to your dataset or configuration file's location.
+`--data`: Specify the dataset configuration file path (dataset.yaml). The default path is set; update it according to your dataset or configuration file's location：
 
 ```python
 python detect.py --data path/to/your/dataset.yaml
