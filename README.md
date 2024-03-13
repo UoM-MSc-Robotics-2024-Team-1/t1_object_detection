@@ -45,25 +45,25 @@ Replace `yourimage.jpg` with the path to the image you want to process.
 Usage
 To run the detection script, use the following command:
 
-python
-Copy code
+```python
 python detect.py --source yourimage.jpg
-Replace yourimage.jpg with the path to the image you want to process. For additional customization, the script supports several optional arguments:
+```
+Replace `yourimage.jpg` with the path to the image you want to process. For additional customization, the script supports several optional arguments:
 
---weights: Set the model path or triton URL. Default is pre-configured to a specific path. If necessary, change this to where your model's weights are stored.
+`--weights`: Set the model path or triton URL. Default is pre-configured to a specific path. If necessary, change this to where your model's weights are stored.
 
-python
-Copy code
+```python
 python detect.py --source yourimage.jpg --weights path/to/your/model_weights.pt
---source: Define the source of the input. It can be a file path, directory, URL, glob pattern, 'screen' for screenshot, or a camera ID ('0' for webcam). The default is 6, adjust as needed.
+```
+`--source`: Define the source of the input. It can be a file path, directory, URL, glob pattern, 'screen' for screenshot, or a camera ID ('0' for webcam). The default is 6, adjust as needed.
 
-python
-Copy code
+```python
 python detect.py --source yourimage.jpg
---data: Specify the dataset configuration file path (dataset.yaml). The default path is set; update it according to your dataset or configuration file's location.
+```python
+`--data`: Specify the dataset configuration file path (dataset.yaml). The default path is set; update it according to your dataset or configuration file's location.
 
-python
-Copy code
+```python
 python detect.py --source yourimage.jpg --data path/to/your/dataset.yaml
+```python
 Ensure to modify these arguments according to your setup and the requirements of your detection task.
 
