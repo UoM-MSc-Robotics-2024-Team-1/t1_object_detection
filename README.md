@@ -48,11 +48,14 @@ The script supports several optional arguments:
 python detect.py --weights path/to/your/model_weights.pt
 ```
 
+
 `--source`: Define the source of the input. It can be a file path, directory, URL, glob pattern, or a camera ID ('0' for webcam). The default is 6, adjust as needed.
 
 ```python
 python detect.py --source yourimage.jpg
 ```
+
+
 `--data`: Specify the dataset configuration file path (dataset.yaml). The default path is set; update it according to your dataset or configuration file's location.
 
 ```python
