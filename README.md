@@ -42,6 +42,4 @@ python detect.py --source yourimage.jpg
 
 Replace `yourimage.jpg` with the path to the image you want to process.
 
-## Contributing
 
-We welcome contributions! Please see `CONTRIBUTING.md` for how you can contribute to this project.
