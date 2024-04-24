@@ -7,6 +7,7 @@ This project enhances the Leo Rover's environmental interaction by using the lig
 - **Shape Recognition**: Classify basic shapes to aid in navigation and interaction.
 - **Position Detection**: Determine the precise location of objects for mapping and obstacle avoidance.
 - **Color Recognition**: Identify colors of objects for specific tasks like sorting or analysis.
+- **ROS2 Topic Publish**: Publish object info to ROS2 topic.
 
 ## Getting Started
 
