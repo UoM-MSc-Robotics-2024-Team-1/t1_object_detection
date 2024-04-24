@@ -42,6 +42,14 @@ import numpy as np
 import pyrealsense2 as rs
 import torch
 
+
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+# from geometry_msgs.msg import PointStamped
+
+
+
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
 if str(ROOT) not in sys.path:
@@ -365,10 +373,17 @@ def run(
 
                     # 打印坐标和颜色
                     print(f"Bounding box: {xyxy_int},Class: {model.names[int(cls)]}, Dominant color: {dominant_color}")
+
+                    bbox_str = f"({x_min}, {y_min}, {x_max}, {y_max})"
+                    class_name = model.names[int(cls)]
+                    color_str = ','.join(map(str, dominant_color))
+
+                    # 调用 ROS2 发布函数
+                    ros_node.publish_info(bbox_str, class_name, color_str)
             
 
-                    if save_csv:
-                        write_to_csv(p.name, label, confidence_str)
+                    # if save_csv:
+                    #     write_to_csv(p.name, label, confidence_str)
 
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
@@ -428,11 +443,11 @@ def run(
 def parse_opt():
     """Parses command-line arguments for YOLOv5 detection, setting inference options and model configurations."""
     parser = argparse.ArgumentParser()
-    parser.add_argument("--weights", nargs="+", type=str, default=ROOT / "/runs/train/exp24/weights/best.pt", help="model path or triton URL")
+    parser.add_argument("--weights", nargs="+", type=str, default=ROOT / "runs/train/m_25best.pt", help="model path or triton URL")
     parser.add_argument("--source", type=str, default=6, help="file/dir/URL/glob/screen/0(webcam)")
     parser.add_argument("--data", type=str, default=ROOT / "/data/object_shape.yaml", help="(optional) dataset.yaml path")
     parser.add_argument("--imgsz", "--img", "--img-size", nargs="+", type=int, default=[640], help="inference size h,w")
-    parser.add_argument("--conf-thres", type=float, default=0.25, help="confidence threshold")
+    parser.add_argument("--conf-thres", type=float, default=0.5, help="confidence threshold")
     parser.add_argument("--iou-thres", type=float, default=0.45, help="NMS IoU threshold")
     parser.add_argument("--max-det", type=int, default=1000, help="maximum detections per image")
     parser.add_argument("--device", default="", help="cuda device, i.e. 0 or 0,1,2,3 or cpu")
@@ -462,6 +477,22 @@ def parse_opt():
     return opt
 
 
+
+class ObjectInfoPublisher(Node):
+    def __init__(self):
+        super().__init__('object_detector')
+        self.publisher_ = self.create_publisher(String, 'object_info', 10)
+
+    def publish_info(self, bbox, class_name, color):
+        # 创建一个信息字符串
+        msg = String()
+        msg.data = f"BBox: {bbox}, Class: {class_name}, Dominant Color: {color}"
+        self.publisher_.publish(msg)
+        self.get_logger().info('Publishing: "{}"'.format(msg.data))
+
+
+
+
 def main(opt):
     """Executes YOLOv5 model inference with given options, checking requirements before running the model."""
     check_requirements(ROOT / "requirements.txt", exclude=("tensorboard", "thop"))
@@ -469,5 +500,18 @@ def main(opt):
 
 
 if __name__ == "__main__":
+    rclpy.init()
+    ros_node = ObjectInfoPublisher()
     opt = parse_opt()
     main(opt)
+    # 确保在程序的最后关闭 ROS2 节点
+    try:
+        rclpy.spin(ros_node)
+    except KeyboardInterrupt:
+        pass  # 处理 Ctrl+C 中断
+    finally:
+        ros_node.destroy_node()
+        rclpy.shutdown()
+
+
+
