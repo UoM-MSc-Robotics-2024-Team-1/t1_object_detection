@@ -31,6 +31,9 @@ Install the necessary Python packages:
 ```bash
 pip install -r requirements.txt
 ```
+```bash
+pip install pyrealsense2
+```
 
 ## Usage
 
