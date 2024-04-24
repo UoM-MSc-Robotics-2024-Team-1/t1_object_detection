@@ -1,6 +1,7 @@
 # Leo Rover Object Detection with YOLOv5n
 
-This project enhances the Leo Rover's environmental interaction by using the lightweight YOLOv5n model for object detection, focusing on recognizing the shape, position, and color of objects. And object info can be published to ROS2 topic.
+This project enhances the Leo Rover's environmental interaction by using the lightweight YOLOv5n model for object detection, focusing on recognizing the shape, position, and color of objects. And object info can be published to ROS2 topic.\
+Please make sure ROS2 is ready for using on your device.
 
 ## Features
 
